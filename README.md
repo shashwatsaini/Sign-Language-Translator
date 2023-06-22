@@ -1,6 +1,7 @@
 # Sign-Language-Translator
 A Sign Language Translator, made using mediapipe.
-Prerequisites: Mediapipe, Tensorflow, PyQt5
+
+Prerequisites: Mediapipe, Tensorflow, PyQt5.
 A Sign Language Translator inspired by the [Google - American Sign Language Fingerspelling Recognition Competition](https://www.kaggle.com/competitions/asl-fingerspelling).
 
 Run the main.py file to run the app. Information on how to use it can be found within the app itself, in Help->How to use this application? 
