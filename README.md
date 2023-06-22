@@ -7,8 +7,6 @@ Run the main.py file to run the app. Information on how to use it can be found w
 The model used can also be trained from scratch, to do this, run trainModel.py. Otherwise, the app is also capable of improving the model over time, to use this feature
 you must click on 'Yes' in the prompt, where it checks whether a response was accurate. Then navigate to Model->Update Model within the app, to retrain.
 
-Shield: [![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]
-
 This work is licensed under a
 [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License][cc-by-nc-sa].
 
