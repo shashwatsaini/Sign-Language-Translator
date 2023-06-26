@@ -11,6 +11,7 @@ from PyQt5.QtCore import QTimer
 from PyQt5.QtWidgets import QApplication, QLabel, QMainWindow, QVBoxLayout, QWidget, QLineEdit, QPushButton, QHBoxLayout, QDialog, QMenuBar, QAction, QMessageBox
 
 
+# Class for the Train Model window
 class TrainModel(QMainWindow):
 
     def __init__(self):
@@ -113,6 +114,7 @@ class TrainModel(QMainWindow):
         oe = OrdinalEncoder()
         y = oe.fit_transform(y.to_numpy().reshape(-1, 1))
 
+        # The Neural Network
         model = tf.keras.models.Sequential([
             tf.keras.layers.Dense(64, input_dim=X.shape[1], activation='relu'),
             tf.keras.layers.Dense(128, activation='relu'),
@@ -127,6 +129,7 @@ class TrainModel(QMainWindow):
 
         model.save('models/model.h5')
 
+        # Converting to tensorflow lite
         converter = lite.TFLiteConverter.from_keras_model(model)
         tflite_model = converter.convert()
         open('models/model.tflite', 'wb').write(tflite_model)
