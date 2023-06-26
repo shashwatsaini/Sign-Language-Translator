@@ -10,15 +10,17 @@ from PyQt5.QtGui import QImage, QPixmap, QIcon, QFont
 from PyQt5.QtCore import QTimer
 from PyQt5.QtWidgets import QApplication, QLabel, QMainWindow, QVBoxLayout, QWidget, QLineEdit, QPushButton, QHBoxLayout, QDialog, QMenuBar, QAction, QMessageBox
 
+# Importing the other files
 from bin.aboutApp import aboutApp
 from bin.help import Help
 
-classes = [chr(i) for i in range(ord('A'), ord('Z') + 1) if chr(i) not in ['J', 'Z']]
-classes.append('_')
-interpreter = tf.lite.Interpreter(model_path='models/model.tflite')
+# Some variables that will be used through the program
+classes = [chr(i) for i in range(ord('A'), ord('Z') + 1) if chr(i) not in ['J', 'Z']]   # List of all the alphabets that will be used
+classes.append('_') # Represents whitespace
+interpreter = tf.lite.Interpreter(model_path='models/model.tflite') # Loading the AI model
 interpreter.allocate_tensors()
 
-mpHands = mp.solutions.hands
+mpHands = mp.solutions.hands    # Initializing the hand tracking module
 hands = mpHands.Hands(max_num_hands=1)
 mpDraw = mp.solutions.drawing_utils
 
@@ -103,6 +105,7 @@ class MainWindow(QMainWindow):
         self.text_field.setText('')
         self.text_field_stream = ''
 
+    # Saving the predictions for retraining the model
     def saveProcessedFields(self):
         try:
             file = pd.read_csv('data/update_model.csv')
@@ -119,6 +122,7 @@ class MainWindow(QMainWindow):
         temp = pd.DataFrame(columns=[str(i) for i in range(25)] + ['label'])
         self.processed_frames = temp.copy()
 
+    # Updating the AI model
     def update_model(self):
 
         train = pd.read_csv('data/update_model.csv')
@@ -168,6 +172,7 @@ class MainWindow(QMainWindow):
 
             del train
 
+    # Training the model from scratch
     def train_model_clicked(self):
         alert = QMessageBox()
         alert.setIcon(QMessageBox.Information)
@@ -176,10 +181,12 @@ class MainWindow(QMainWindow):
         alert.setStandardButtons(QMessageBox.Ok)
         alert.exec_()
 
+    # Removing predictions if they are incorrent
     def discardProcessedFields(self):
         temp = pd.DataFrame(columns=[str(i) for i in range(25)] + ['label'])
         self.processed_frames = temp.copy()
 
+    # Normalizing the co-ordinates of hand points
     def normalize(self, entry):
         ref = (entry.loc[0, '0_x'], entry.loc[0, '0_y'])
 
@@ -216,6 +223,7 @@ class MainWindow(QMainWindow):
 
         return entry_final
 
+    # Making predictions
     def process_frame(self):
         success, img = self.cap.read()
         imgRGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
