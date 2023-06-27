@@ -5,6 +5,7 @@ from PyQt5.QtGui import QIcon
 import sys
 
 
+# Class for the Help window
 class Help(QMainWindow):
 
     def __init__(self):
