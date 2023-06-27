@@ -117,7 +117,9 @@ class TrainModel(QMainWindow):
         # The Neural Network
         model = tf.keras.models.Sequential([
             tf.keras.layers.Dense(64, input_dim=X.shape[1], activation='relu'),
+            tf.keras.layers.Dropout(0.3),
             tf.keras.layers.Dense(128, activation='relu'),
+            tf.keras.layers.Dropout(0.3),
             tf.keras.layers.Dense(25, activation='softmax')
         ])
 
@@ -125,7 +127,7 @@ class TrainModel(QMainWindow):
                       loss='sparse_categorical_crossentropy',
                       metrics=['accuracy'])
 
-        model.fit(X, y, epochs=100)
+        model.fit(X, y, epochs=150)
 
         model.save('models/model.h5')
 
