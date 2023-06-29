@@ -44,13 +44,19 @@ class TrainModel(QMainWindow):
 
         self.training_layout = QHBoxLayout()
         self.text1 = QLabel('Sign this character: ')
+        self.text1.setStyleSheet(
+            'background-color: white;border:none;color:black;padding: 10px 20px;text-align:center;text-decoration:none;display:inline-block;font-size:16px;')
         self.label_button = QPushButton(str(self.label))
+        self.label_button.setStyleSheet(
+            'background-color: white;border:none;color:black;padding: 10px 20px;text-align:center;text-decoration:none;display:inline-block;font-size:16px;')
         self.training_layout.addWidget(self.text1)
         self.training_layout.addWidget(self.label_button)
         layout.addLayout(self.training_layout)
 
         self.interface_layout = QHBoxLayout()
         self.cancel_button = QPushButton('Cancel')
+        self.cancel_button.setStyleSheet(
+            'background-color: #f44336;border:none;color:white;padding: 10px 20px;text-align:center;text-decoration:none;display:inline-block;font-size:16px;')
         self.cancel_button.clicked.connect(self.cancel_clicked)
         self.interface_layout.addWidget(self.cancel_button)
         layout.addLayout(self.interface_layout)
