@@ -52,16 +52,24 @@ class MainWindow(QMainWindow):
 
         self.text_field = QLineEdit()
         self.text_field.setPlaceholderText('Text will be display here')
+        self.text_field.setStyleSheet(
+            'background-color: white;border:none;color:black;padding: 10px 20px;text-align:center;text-decoration:none;display:inline-block;font-size:16px;')
         layout.addWidget(self.text_field)
 
         self.clear_button = QPushButton('Clear')
+        self.clear_button.setStyleSheet(
+            'background-color: white;border:none;color:black;padding: 10px 20px;text-align:center;text-decoration:none;display:inline-block;font-size:16px;')
         self.clear_button.clicked.connect(self.clearTextField)
         layout.addWidget(self.clear_button)
 
         self.label1 = QLabel('Was this response correct?')
         self.response_button_yes = QPushButton('Yes')
+        self.response_button_yes.setStyleSheet(
+            'background-color: #4CAF50;border:none;color:white;padding: 10px 20px;text-align:center;text-decoration:none;display:inline-block;font-size:16px;')
         self.response_button_yes.clicked.connect(self.saveProcessedFields)
         self.response_button_no = QPushButton('No')
+        self.response_button_no.setStyleSheet(
+            'background-color: #f44336;border:none;color:white;padding: 10px 20px;text-align:center;text-decoration:none;display:inline-block;font-size:16px;')
         self.response_button_no.clicked.connect(self.discardProcessedFields)
 
         self.response_layout = QHBoxLayout()
@@ -70,6 +78,8 @@ class MainWindow(QMainWindow):
         self.response_layout.addWidget(self.response_button_no)
 
         self.menubar = QMenuBar()
+        self.menubar.setStyleSheet(
+            'background-color: #f1f1f1;border:none;color:black;padding: 10px 0px;text-align:center;text-decoration:none;display:inline-block;font-size:18px;')
         self.model_list = self.menubar.addMenu('Model')
         self.update_model_option = QAction('Update Model', self)
         self.update_model_option.triggered.connect(self.update_model)
