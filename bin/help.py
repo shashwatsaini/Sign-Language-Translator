@@ -1,7 +1,7 @@
 from PyQt5.QtWidgets import QApplication, QLabel, QMainWindow, QVBoxLayout, QWidget, QPushButton, \
     QHBoxLayout, QMessageBox, QFrame, QScrollArea, QGridLayout
 from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QIcon
+from PyQt5.QtGui import QIcon, QFont
 import sys
 
 
@@ -16,6 +16,10 @@ class Help(QMainWindow):
         self.icon = QIcon('../icons/info.png')
         self.setWindowIcon(self.icon)
 
+        font = QFont()
+        font.setPointSize(8)
+        QApplication.setFont(font)
+
         self.central_widget = QWidget(self)
         self.setCentralWidget(self.central_widget)
         layout = QGridLayout(self.central_widget)
@@ -23,11 +27,16 @@ class Help(QMainWindow):
         self.nav = QVBoxLayout()
 
         self.option1 = QPushButton('How to use this app to translate?')
+        self.option1.setStyleSheet(
+            'background-color: white;border:none;color:black;padding: 10px 20px;text-align:center;text-decoration:none;display:inline-block;font-size:16px;')
         self.option1.clicked.connect(self.option1_clicked)
-        self.option1.setEnabled(False)
         self.option2 = QPushButton('How to make the model more accurate?')
+        self.option2.setStyleSheet(
+            'background-color: white;border:none;color:black;padding: 10px 20px;text-align:center;text-decoration:none;display:inline-block;font-size:16px;')
         self.option2.clicked.connect(self.option2_clicked)
         self.option3 = QPushButton('How to retrain the model from scratch?')
+        self.option3.setStyleSheet(
+            'background-color: white;border:none;color:black;padding: 10px 20px;text-align:center;text-decoration:none;display:inline-block;font-size:16px;')
         self.option3.clicked.connect(self.option3_clicked)
 
         self.nav.addWidget(self.option1)
@@ -65,12 +74,18 @@ class Help(QMainWindow):
         layout.setColumnStretch(0, 1)
         layout.setColumnStretch(1, 2)
 
+        self.option1_clicked()
+
     def option1_clicked(self):
         self.display.setText(
             'The app will access your webcam and translate the sign language to text. The app will display an interface over a hand if it detects'
             ' it. It will then display the translated text in the text box.')
 
+        self.reset_option_clicks()
+
         self.option1.setEnabled(False)
+        self.option1.setStyleSheet(
+            'background-color: gray;border:none;color:black;padding: 10px 20px;text-align:center;text-decoration:none;display:inline-block;font-size:16px;')
         self.option2.setEnabled(True)
         self.option3.setEnabled(True)
 
@@ -79,18 +94,34 @@ class Help(QMainWindow):
             'When a response is accurate, respond \'yes\' to the prompt below the text field. Under the model option, click on retrain model to refresh the model'
             ' with the new data. The model will be retrained with the new data and will be more accurate. ')
 
+        self.reset_option_clicks()
+
         self.option1.setEnabled(True)
         self.option2.setEnabled(False)
+        self.option2.setStyleSheet(
+            'background-color: gray;border:none;color:black;padding: 10px 20px;text-align:center;text-decoration:none;display:inline-block;font-size:16px;')
         self.option3.setEnabled(True)
 
     def option3_clicked(self):
         self.display.setText(
             'Under the model option, click on update model, which will then train the model from scratch. This will take a while.')
 
+        self.reset_option_clicks()
+
         self.option1.setEnabled(True)
         self.option2.setEnabled(True)
         self.option3.setEnabled(False)
+        self.option3.setStyleSheet(
+            'background-color: gray;border:none;color:black;padding: 10px 20px;text-align:center;text-decoration:none;display:inline-block;font-size:16px;')
 
+    # To reset the clicks on the options
+    def reset_option_clicks(self):
+        self.option1.setStyleSheet(
+            'background-color: white;border:none;color:black;padding: 10px 20px;text-align:center;text-decoration:none;display:inline-block;font-size:16px;')
+        self.option2.setStyleSheet(
+            'background-color: white;border:none;color:black;padding: 10px 20px;text-align:center;text-decoration:none;display:inline-block;font-size:16px;')
+        self.option3.setStyleSheet(
+            'background-color: white;border:none;color:black;padding: 10px 20px;text-align:center;text-decoration:none;display:inline-block;font-size:16px;')
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
