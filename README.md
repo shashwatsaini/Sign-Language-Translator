@@ -11,6 +11,14 @@ you must click on 'Yes' in the prompt, where it checks whether a response was ac
 This work is licensed under a
 [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License][cc-by-nc-sa].
 
+Demo photos:
+![Inference](https://github.com/shashwatsaini/Sign-Language-Translator/assets/125039068/b83da470-f791-43aa-880c-55120143a1ac)
+<img width="392" alt="Training" src="https://github.com/shashwatsaini/Sign-Language-Translator/assets/125039068/e41fd1b3-5eb2-40b3-a7bd-aaeab85c3801">
+![Help](https://github.com/shashwatsaini/Sign-Language-Translator/assets/125039068/3fd4cddc-9d14-4b19-8d04-551d1a70752b)
+
+
+
+
 [![CC BY-NC-SA 4.0][cc-by-nc-sa-image]][cc-by-nc-sa]
 
 [cc-by-nc-sa]: http://creativecommons.org/licenses/by-nc-sa/4.0/
